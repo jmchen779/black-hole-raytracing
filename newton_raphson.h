@@ -2,7 +2,9 @@
 #include <print>
 #include <cmath>
 #include <tuple>
+//In this file there are multiple methods for root finding
 
+//Fixed point iteration
 template <typename F>
 std::tuple<bool, double> fixed_point_iteration(const F& g, double x0, double tolerance){
     auto OG = [&g](double x) {return g(x);};
@@ -37,6 +39,7 @@ std::tuple<bool, double> fixed_point_iteration(const F& g, double x0, double tol
     }
     return std::make_tuple(false, xNext);
 }
+//Bisection
 template <typename F>
 std::tuple<bool, double> bisection(const F& f, double a, double b, double tolerance){
     auto Ff = [&f](double x){ return f(x);};
@@ -57,6 +60,7 @@ std::tuple<bool, double> bisection(const F& f, double a, double b, double tolera
     }
     return std::make_tuple(false, midpoint);
 }
+//Newton Raphson
 template <typename F, typename Fprime>
 std::tuple<bool, double> newton_raphson(const F& f, const Fprime& fprime, double x0, double tolerance){
     auto Ff = [&f](double x){ return f(x);};

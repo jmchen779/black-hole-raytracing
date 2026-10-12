@@ -159,8 +159,8 @@ public:
     return 1.0 / (z*z*z);}
     //return phi_final;
 //}
-    else{
-    return 0.0;}
+   // else{
+   // return 0.0;}
 
     }
     

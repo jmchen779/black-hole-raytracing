@@ -74,7 +74,7 @@ double phi_target = 4 * M_PI;
 double phi_prev = solver.result[solver.xs.size() - 2][2];
 double phi_last = solver.result[solver.xs.size() - 1][2];
 
-std::printf("phi_prev = {}, phi_last = {}, target = {}\n", phi_prev, phi_last, phi_target);
+std::print("phi_prev = {}, phi_last = {}, target = {}\n", phi_prev, phi_last, phi_target);
     double x_value = 0.0;
 
 if (phi_prev < phi_target && phi_last > phi_target) {
@@ -99,18 +99,18 @@ if (phi_prev < phi_target && phi_last > phi_target) {
         if (std::get<0>(result)) {
             x_value = std::get<1>(result);
             converged = true;
-            std::printf("Converged with initial guess {}: theta = {}\n", guess, x_value);
+            std::print("Converged with initial guess {}: theta = {}\n", guess, x_value);
             break;
         } else {
-            std::printf("Guess {} failed to converge\n", guess);
+            std::print("Guess {} failed to converge\n", guess);
         }
     }
 
     if (converged) {
         double x_interp = solver.xs[solver.xs.size() - 2] + solver.hs.back() * x_value;
-        std::printf("Interpolated x = {}, phi ≈ {}\n", x_interp, phi_target);
+        std::print("Interpolated x = {}, phi ≈ {}\n", x_interp, phi_target);
     } else {
-        std::printf("Newton–Raphson failed for all guesses.\n");
+        std::print("Newton–Raphson failed for all guesses.\n");
     }
 } 
 compute_dense_rs(solver.result.back()[0], solver.result[solver.xs.size()-2][0],
@@ -118,7 +118,7 @@ compute_dense_rs(solver.result.back()[0], solver.result[solver.xs.size()-2][0],
                  solver.k4[0], solver.k5[0], solver.k6[0], solver.k7[0]);
 double r_obs = r1 + x_value * (r2 + (1 - x_value) * (r3 + x_value * (r4 + (1 - x_value) * r5)));
 
-std::printf("Error: {}\n", std::abs(r_obs - 20.0*M));
+std::print("Error: {}\n", std::abs(r_obs - 20.0*M));
 return 0;
 }
 

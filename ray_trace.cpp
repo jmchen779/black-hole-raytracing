@@ -9,24 +9,22 @@
 
 
 int main(){
-    int n = 200;
-    int m = 400;
-
+    int n = 100;
+    int m = 200;
     std::vector<std::vector<double>> picture(n, std::vector<double>(m));
-    double a = 0.5;
+    double a = 0.99;
     double M = 1;
     double D = 500.0;
-    double theta0 = 5.0 * M_PI / 180.0;  
+    double theta0 = 85.0 * M_PI / 180.0;  
+    //inner and outer radii of accretion disk
     double r_in = 5.0;
     double r_out = 20.0;
     double expected_disk_size = 2.0 * r_out;
-    double screen_width = expected_disk_size * 2.5;
+    double screen_width = expected_disk_size * 2.0;
     double screen_height = screen_width * n / m;
-    
-    auto render_rows = [&](int row_begin, int row_end){
-        if(row_begin >= row_end) return;
-        
-        for (int i = row_begin; i < row_end; ++i){
+
+        //loop through each pixel and compute intensity
+        for (int i = 0; i < n; ++i){
             for (int j = 0; j < m; ++j){
                 double alpha_screen = -(screen_width * (j - m/2.0) / m) / M;
                 double beta_screen = -(screen_height * (i - n/2.0) / n) / M;
@@ -70,14 +68,15 @@ int main(){
                 if (result > 0) {
                     picture[i][j] = result;
                 } else {
+                    
                     picture[i][j] = 0.0;
                 }
             }
         }
-    };
+  
 
 
-
+  
     double min_val = picture[0][0], max_val = picture[0][0];
     for (auto &row : picture) {
         for (double val : row) {

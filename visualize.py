@@ -3,9 +3,9 @@ import numpy as np
 from matplotlib.colors import LinearSegmentedColormap
 
 # Load image
-image = np.loadtxt("/Users/jonahchen/physics427-2025-project-1-the-best-team/bh_image.pgm", skiprows=3)
+image = np.loadtxt("/Users/jonahchen/black-hole-raytracing/bh_image.pgm", skiprows=3)
 
-M = 4
+M = 1
 ny, nx = image.shape
 alpha = np.linspace(-nx/(2*M), nx/(2*M), nx)
 beta = np.linspace(-ny/(2*M), ny/(2*M), ny)
