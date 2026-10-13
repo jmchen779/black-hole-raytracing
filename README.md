@@ -72,6 +72,6 @@ The small fractional errors indicate that the integrator maintains stability and
 ```
 Visualizations of our Tests
 ```
-![First Einstein Ring](docs/einstein_ringA.png)
-![Second Einstein Ring](docs/einstein_ringB.png)
+![First Einstein Ring](docs/einstein_ringa.png)
+![Second Einstein Ring](docs/einstein_ringb.png)
 
