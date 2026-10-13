@@ -44,6 +44,9 @@ Create a ray traced image:
 ```
 make run
 ```
+To make a png image, run the visualize.py file. You will need to change the path to your pgm file.
+
+
 Compile and run all test programs:
 ```
 make test
