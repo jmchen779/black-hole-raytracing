@@ -91,19 +91,7 @@ public:
     }
     
 }
-         // TODO: Carry out dense output here, in two steps. First, compute the
-          // coefficients r1, r2, r3, r4, r5. You can use the already-defined
-          // function compute_dense_rs to do this, and implement the "TODO" part
-          // in the function. Then, go through the x_out array, find the x_out
-          // values that are between x and x + h, interpolate the corresponding
-          // y values using the coefficients. Push the x values to the xs array
-          // and y values to the result array.
-
-          // Note that you probably don't want to loop through the whole x_out
-          // array every time you compute a step. You can keep track of the
-          // index of the last x_out value you used as xout_idx, and start from
-          // there next time. You can assume that the x_out array is already
-          // sorted in ascending order.
+        
         } else {
           // This is what we do when not using dense output
           hs.push_back(h);

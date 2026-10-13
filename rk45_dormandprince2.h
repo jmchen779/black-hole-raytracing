@@ -88,19 +88,7 @@ public:
         result.push_back(std::move(row));
     }
 }
-         // TODO: Carry out dense output here, in two steps. First, compute the
-          // coefficients r1, r2, r3, r4, r5. You can use the already-defined
-          // function compute_dense_rs to do this, and implement the "TODO" part
-          // in the function. Then, go through the x_out array, find the x_out
-          // values that are between x and x + h, interpolate the corresponding
-          // y values using the coefficients. Push the x values to the xs array
-          // and y values to the result array.
 
-          // Note that you probably don't want to loop through the whole x_out
-          // array every time you compute a step. You can keep track of the
-          // index of the last x_out value you used as xout_idx, and start from
-          // there next time. You can assume that the x_out array is already
-          // sorted in ascending order.
         } else {
           // This is what we do when not using dense output
           hs.push_back(h);
@@ -124,12 +112,6 @@ public:
       }
       if (err < 1.0){
       err_prev = err;}
-      // TODO: Implement this part where we adjust h according to the error.
-      // Note that using the formula given in the lecture, it will increase h if
-      // err is small and decrease it if err is large. Do not let h go below
-      // hmin or above hmax. You can either use the simple step size control or
-      // the more advanced one that uses err_prev. If you do use err_prev, make
-      // sure to update it accordingly.
 
       // Uncomment the following line to see the step size and error at each step
       // std::println("x = {}, h = {}, err = {}", x, h, err);
@@ -177,19 +159,11 @@ public:
       y_next[i] = y[i] + h*(k1[i]*a71 + k2[i]*a72 + k3[i]*a73 + k4[i]*a74+k5[i]*a75+k6[i]*a76);
       y_err[i] = std::abs((h*(k1[i]*e1 + k2[i]*e2 + k3[i]*e3 + k4[i]*e4+k5[i]*e5+k6[i]*e6 + k7[i] * e7) ));
     }
-    // TODO: Compute 5th order y_next using the Dormand-Prince method. Then,
-    // compute a y_err vector as the difference between the 5th order and 4th
-    // order estimates of DP45. Note that the coefficients e1, e2, ..., e7 are
-    // already defined for you, which are the differences between b_i
-    // (coefficients of the 5th order solution) and b_i^* (coefficients of the
-    // 4th order solution).
 
     return y_next;
   }
 
   double error(const std::vector<double> &y) {
-    // TODO: Compute the rescaled scalar error from the y_err vector computed in
-    // the step function, and return it.
     double sum = 0;
     for (int i = 0; i < n_eq; i++){
       sum += (y_err[i] / (atol + rtol * std::abs(y[i]))) * (y_err[i] / (atol + rtol * std::abs(y[i])));
@@ -199,7 +173,6 @@ public:
 
   void compute_dense_rs(const std::vector<double> &y,
                         const std::vector<double> &y_prev, double h) {
-    // TODO: Compute the coefficients r1, r2, r3, r4, r5 here
     for (int i = 0; i < n_eq; i++){
     r1[i] = y_prev[i];
     r2[i] = y[i] - y_prev[i];
